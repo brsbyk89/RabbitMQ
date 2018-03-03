@@ -10,11 +10,24 @@ namespace RabbitMQPublisher
     {
         static void Main(string[] args)
         {
-            var publisher = new Publisher();
+            while (true)
+            {
+                
+                Console.WriteLine("MailQueue eklemek istediğiniz mesajı giriniz. Çıkış için Exit yazınız");
 
-            publisher.SendToRabbitMQ("MailQueue", "kuyruğa attığım üçüncü mesaj");
+                var message = Console.ReadLine();
 
-            Console.ReadLine();
+                if (message.ToLower() == "exit")
+                {
+                    break;
+                }
+
+                var publisher = new Publisher();
+
+                publisher.SendToRabbitMQ("MailQueue", message);
+            
+            }
+
         }
     }
 }

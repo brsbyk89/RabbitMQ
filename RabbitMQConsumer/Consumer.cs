@@ -16,22 +16,30 @@ namespace RabbitMQConsumer
         public Consumer(string queueName)
         {
             _rabbitMQService = new RabbitMQService();
-
-            using (var connection = _rabbitMQService.GetRabbitMQConnection())
+            while (true)
             {
-                using (var channel = connection.CreateModel())
+                using (var connection = _rabbitMQService.GetRabbitMQConnection())
                 {
-                    channel.QueueDeclare(queueName, false, false, false, null);
-                    var consumer = new EventingBasicConsumer(channel);
-                    BasicGetResult result = channel.BasicGet(queueName, true);
-                    if (result != null)
+                    using (var channel = connection.CreateModel())
                     {
-                        string data =
-                        Encoding.UTF8.GetString(result.Body);
-                        Console.WriteLine(data);
+                        channel.QueueDeclare(queueName, false, false, false, null);
+                        var consumer = new EventingBasicConsumer(channel);
+                        BasicGetResult result = channel.BasicGet(queueName, true);
+                        if (result != null)
+                        {
+                            string data =
+                            Encoding.UTF8.GetString(result.Body);
+                            Console.WriteLine(data);
+                            Console.ReadLine();
+                        }
+                        else
+                        {
+                            break;
+                        }
                     }
                 }
             }
+          
         }
     }
 }
