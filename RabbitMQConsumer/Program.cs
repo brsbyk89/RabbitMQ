@@ -11,8 +11,6 @@ namespace RabbitMQConsumer
         static void Main(string[] args)
         {
             var consumer = new Consumer("MailQueue");
-
-          
         }
     }
 }
