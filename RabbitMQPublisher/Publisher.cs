@@ -25,6 +25,7 @@ namespace RabbitMQPublisher
                     channel.BasicPublish("", queueName, null, Encoding.UTF8.GetBytes(message));
 
                     Console.WriteLine("{0} queue'su üzerine, \"{1}\" mesajı yazıldı.", queueName, message);
+
                 }
             }
 
