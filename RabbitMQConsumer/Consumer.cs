@@ -30,11 +30,6 @@ namespace RabbitMQConsumer
                             string data =
                             Encoding.UTF8.GetString(result.Body);
                             Console.WriteLine(data);
-                            Console.ReadLine();
-                        }
-                        else
-                        {
-                            break;
                         }
                     }
                 }
