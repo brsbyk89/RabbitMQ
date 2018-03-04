@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Mail;
 
 namespace RabbitMQConsumer
 {
@@ -29,6 +30,14 @@ namespace RabbitMQConsumer
                         {
                             string data =
                             Encoding.UTF8.GetString(result.Body);
+
+                            Mail.Mail mail = new Mail.Mail();
+
+                            mail.SendMail(data);
+
+                            
+                            
+
                             Console.WriteLine(data);
                         }
                     }

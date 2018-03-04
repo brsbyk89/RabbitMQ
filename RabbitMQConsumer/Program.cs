@@ -10,7 +10,7 @@ namespace RabbitMQConsumer
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Kuyruktan veriler sirasi ile çekilecektir.....");
+            Console.WriteLine("Kuyruktan veriler sirasi ile çekilip uygulamayı çalıştırdığınız anda mail gönderilecektir.....");
             var consumer = new Consumer("MailQueue");
         }
     }
